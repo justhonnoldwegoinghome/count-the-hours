@@ -1,6 +1,7 @@
-import { differenceInSeconds, secondsToMinutes } from "date-fns";
+import { differenceInSeconds } from "date-fns";
 import Head from "next/head";
 import { storage } from "@/utils/storage";
+import { format } from "@/utils/format";
 import { useEffect, useState } from "react";
 
 type Status = "started" | "paused" | "ended" | "default";
@@ -93,9 +94,9 @@ export default function Page() {
       <div className="relative min-h-[100vh] bg-steel flex justify-center items-center gap-8">
         {status === "ended" ? (
           <div className="p-8 bg-light rounded-3xl">
-            <p className="text-3xl font-semibold">{`${secondsToMinutes(
+            <p className="text-3xl font-semibold">{`${format.secondsToDuration(
               totalSeconds
-            )} min`}</p>
+            )}`}</p>
           </div>
         ) : (
           <>
@@ -121,7 +122,7 @@ export default function Page() {
             </button>
             <button
               onClick={canEnd ? end : () => null}
-              className={`absolute bottom-0 right-0 bg-light px-4 text-sm rounded-xl ${
+              className={`absolute bottom-2 right-2 bg-light px-2 py-1 text-sm rounded ${
                 !canEnd && "cursor-not-allowed"
               }`}
             >
