@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, TouchEvent } from "react";
 
 import { format } from "@/utils/format";
 import { Status } from "@/types";
@@ -12,11 +12,13 @@ export function Display({
 }) {
   const [displayDuration, setDisplayDuration] = useState(false);
 
-  const peek = (e: MouseEvent) => setDisplayDuration(true);
-  const hide = (e: MouseEvent) => setDisplayDuration(false);
+  const peek = (e: MouseEvent | TouchEvent) => setDisplayDuration(true);
+  const hide = (e: MouseEvent | TouchEvent) => setDisplayDuration(false);
 
   return (
     <div
+      onTouchStart={peek}
+      onTouchEnd={hide}
       onMouseDown={peek}
       onMouseUp={hide}
       className={`w-full h-[100px] flex items-center justify-center bg-steel ${
