@@ -34,7 +34,7 @@ export function Stopwatch({
       )}
 
       {status !== "default" && (
-        <div className="absolute bottom-4 right-4">
+        <div className="absolute bottom-12 right-12">
           <ResetButton reset={reset} />
         </div>
       )}
