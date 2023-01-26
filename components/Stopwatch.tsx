@@ -22,16 +22,16 @@ export function Stopwatch({
   });
 
   return (
-    <div className="bg-navy min-h-[100vh] flex items-center justify-center">
-      <div className="flex flex-col justify-center items-center gap-24">
+    <div className="min-h-[100vh] relative bg-white flex items-center justify-center">
+      <div className="absolute top-8">
         <Display secondsElapsed={secondsElapsed} status={status} />
-
-        {status === "started" ? (
-          <PauseButton pause={pause} />
-        ) : (
-          <StartButton start={start} />
-        )}
       </div>
+
+      {status === "started" ? (
+        <PauseButton pause={pause} />
+      ) : (
+        <StartButton start={start} />
+      )}
 
       {status !== "default" && (
         <div className="absolute bottom-8 right-8">
