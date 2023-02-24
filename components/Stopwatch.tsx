@@ -24,7 +24,11 @@ export function Stopwatch({
   return (
     <div className="min-h-[100vh] relative bg-white flex items-center justify-center">
       <div className="absolute top-8">
-        <Display secondsElapsed={secondsElapsed} status={status} />
+        <Display
+          secondsElapsed={secondsElapsed}
+          status={status}
+          numSessions={sessions.length}
+        />
       </div>
 
       {status === "started" ? (

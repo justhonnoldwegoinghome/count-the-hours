@@ -6,9 +6,11 @@ import { Status } from "@/types";
 export function Display({
   secondsElapsed,
   status,
+  numSessions,
 }: {
   secondsElapsed: number;
   status: Status;
+  numSessions: number;
 }) {
   const [displayDuration, setDisplayDuration] = useState(false);
 
@@ -21,7 +23,7 @@ export function Display({
       onTouchEnd={hide}
       onMouseDown={peek}
       onMouseUp={hide}
-      className={`mx-auto w-[300px] h-[200px] ring-4 ring-black rounded-3xl flex items-center justify-center bg-white ${
+      className={`mx-auto relative w-[300px] h-[200px] ring-4 ring-black rounded-3xl flex items-center justify-center bg-white ${
         status === "default"
           ? "hidden"
           : status === "started"
@@ -31,7 +33,10 @@ export function Display({
       ${displayDuration && "bg-white animate-none ring-4 ring-navy"}`}
     >
       {displayDuration && (
-        <p className="text-5xl">{format.secondsToDuration(secondsElapsed)}</p>
+        <>
+          <p className="text-5xl">{format.secondsToDuration(secondsElapsed)}</p>
+          <p className="absolute bottom-4 right-8">{numSessions}</p>
+        </>
       )}
     </div>
   );
